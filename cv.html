@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>CV | Dian Loucas</title>
+      <link
+         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
+         rel="stylesheet"
+      />
+      <link rel="stylesheet" href="css/styles.css" />
+   </head>
+   <body>
+      <nav>
+         <a
+            href="index.html"
+            class="nav-name"
+            style="display: inline-flex; align-items: center; gap: 12px"
+         >
+            D·L
+            <span
+               style="
+                  font-family: &quot;Inter&quot;, sans-serif;
+                  font-size: 0.55rem;
+                  letter-spacing: 3px;
+                  color: var(--text-light);
+                  font-weight: 400;
+               "
+               >34°S / CPT</span
+            >
+         </a>
+         <ul class="nav-links">
+            <li><a href="index.html" class="nav-btn">Home</a></li>
+            <li><a href="portfolio.html" class="nav-btn">Portfolio</a></li>
+            <li><a href="cv.html" class="nav-btn">CV</a></li>
+            <li><a href="connect.html" class="nav-btn">Connect</a></li>
+         </ul>
+      </nav>
+
+      <section id="cv" style="padding-top: 120px; min-height: 100vh">
+         <div style="max-width: 1100px; margin: 0 auto">
+            <div class="section-header">
+               <span class="section-eyebrow-light">Experience</span>
+               <h2 class="section-title-light">Curriculum Vitae</h2>
+            </div>
+            <div class="cv-tabs">
+               <button class="cvtab active" onclick="switchCV('land', this)">
+                  Onshore
+               </button>
+               <button
+                  class="cvtab maritime"
+                  onclick="switchCV('maritime', this)"
+               >
+                  Offshore
+               </button>
+            </div>
+
+            <!-- LAND CV -->
+            <div id="cv-land" class="cv-panel active">
+               <div class="cv-gallery">
+                  <div class="main-cv">
+                     <img
+                        src="images/landbased.png"
+                        alt="Land Based CV"
+                        onclick="openLightbox(this.src)"
+                     />
+                     <div style="display: flex; justify-content: center">
+                        <a
+                           href="images/landbased.png"
+                           class="cv-download"
+                           download
+                           >Download PDF</a
+                        >
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- MARITIME CV -->
+            <div id="cv-maritime" class="cv-panel">
+               <div class="cv-gallery">
+                  <div class="main-cv">
+                     <img
+                        src="images/maritime-cv.png"
+                        alt="Maritime CV"
+                        onclick="openLightbox(this.src)"
+                     />
+                     <div style="display: flex; justify-content: center">
+                        <a
+                           href="images/maritime-cv.png"
+                           class="cv-download"
+                           download
+                           >Download PDF</a
+                        >
+                     </div>
+                  </div>
+                  <div class="cert-grid">
+                                                <img src="images/pdsd.png" onclick="openLightbox(this.src)" alt="PDSD">
+                                                <img src="images/pssr.png" onclick="openLightbox(this.src)" alt="PSSR">
+                                                <img src="images/efa.png" onclick="openLightbox(this.src)" alt="EFA">
+                                                <img src="images/mff.png" onclick="openLightbox(this.src)" alt="MFF">
+                                                <img src="images/pst.png" onclick="openLightbox(this.src)" alt="PST">
+                                                <img src="images/prvh.png" onclick="openLightbox(this.src)" alt="PRVH">
+                                                <img src="images/superdeck.png" onclick="openLightbox(this.src)" alt="Super Deck">
+                                                <img src="images/pwc-pb2.png" onclick="openLightbox(this.src)" alt="PWC PB2">
+                                                <img src="images/compcrew.png" onclick="openLightbox(this.src)" alt="Competent Crew">
+                  </div>
+               </div>
+            </div>
+      </section>
+
+      <footer>
+         <span class="footer-name">DIAN LOUCAS</span>
+         <span class="footer-copy">© 2026 · All rights reserved</span>
+      </footer>
+
+      <!-- LIGHTBOX -->
+      <div class="lightbox" id="lightbox">
+         <span class="close-lightbox">&times;</span>
+         <img id="lightbox-img" />
+      </div>
+
+      <script>
+         function switchCV(type, el) {
+            const isAlreadyActive = el.classList.contains("active");
+            document
+               .querySelectorAll(".cvtab")
+               .forEach((t) => t.classList.remove("active"));
+            document
+               .querySelectorAll(".cv-panel")
+               .forEach((p) => p.classList.remove("active"));
+
+            if (!isAlreadyActive) {
+               el.classList.add("active");
+               document.getElementById("cv-" + type).classList.add("active");
+            }
+         }
+
+         function openLightbox(src) {
+            document.getElementById("lightbox-img").src = src;
+            document.getElementById("lightbox").classList.add("active");
+         }
+
+         const lightbox = document.getElementById("lightbox");
+         const closeBtn = document.querySelector(".close-lightbox");
+
+         lightbox.addEventListener("click", function (e) {
+            if (e.target === lightbox) {
+               lightbox.classList.remove("active");
+            }
+         });
+
+         closeBtn.addEventListener("click", function () {
+            lightbox.classList.remove("active");
+         });
+
+         document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+               lightbox.classList.remove("active");
+            }
+         });
+      </script>
+   </body>
+</html>

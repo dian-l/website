@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Portfolio | Dian Loucas</title>
+      <link
+         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
+         rel="stylesheet"
+      />
+      <link rel="stylesheet" href="css/styles.css" />
+   </head>
+   <body>
+      <nav>
+         <a
+            href="index.html"
+            class="nav-name"
+            style="display: inline-flex; align-items: center; gap: 12px"
+         >
+            D·L
+            <span
+               style="
+                  font-family: &quot;Inter&quot;, sans-serif;
+                  font-size: 0.55rem;
+                  letter-spacing: 3px;
+                  color: var(--text-light);
+                  font-weight: 400;
+               "
+               >34°S / CPT</span
+            >
+         </a>
+         <ul class="nav-links">
+            <li><a href="index.html" class="nav-btn">Home</a></li>
+            <li><a href="portfolio.html" class="nav-btn">Portfolio</a></li>
+            <li><a href="cv.html" class="nav-btn">CV</a></li>
+            <li><a href="connect.html" class="nav-btn">Connect</a></li>
+         </ul>
+      </nav>
+
+      <!-- Add padding to push content below the fixed nav -->
+      <div class="portfolio-tabs">
+    <button class="ptab active" onclick="switchGallery('maritime', this)">
+        Maritime
+    </button>
+
+    <button class="ptab" onclick="switchGallery('onshore', this)">
+        Onshore
+    </button>
+</div>
+
+<div class="portfolio-tabs">
+    <button class="ptab active" onclick="switchGallery('maritime', this)">
+        Maritime
+    </button>
+
+    <button class="ptab" onclick="switchGallery('onshore', this)">
+        Onshore
+    </button>
+</div>
+
+<section class="photo-grid" id="portfolioGallery"></section>
+
+      <footer>
+         <span class="footer-name">DIAN LOUCAS</span>
+         <span class="footer-copy">© 2026 · All rights reserved</span>
+      </footer>
+
+      <div class="lightbox" id="lightbox">
+         <span class="lightbox-close">&times;</span>
+         <img id="lightbox-image" src="" alt="" />
+      </div>
+	  
+<script src="js/gallery.js"></script>
+
+<script src="js/galleries/maritime.js"></script>
+<script src="js/galleries/onshore.js"></script>
+
+<script src="js/main.js"></script>
+
+      <script>
+         const lightbox = document.getElementById("lightbox");
+         const lightboxImg = document.getElementById("lightbox-image");
+         const closeBtn = document.querySelector(".lightbox-close");
+
+         closeBtn.addEventListener("click", () => {
+            lightbox.classList.remove("show");
+         });
+
+         lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+               lightbox.classList.remove("show");
+            }
+         });
+      </script>
+   </body>
+</html>
