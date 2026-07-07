@@ -25,12 +25,12 @@ const onshorePhotos = [
         description: "a date with who?"
     },
 	{
-        file: "CB1.png",
+        file: "CB1.PNG",
         title: "Choclate Bistro",
         description: "Choclate Bistro seen by an photographer."
     },
 	{
-        file: "CB2.png",
+        file: "CB2.PNG",
         title: "Choclate Bistro inside",
         description: "Choclate Bistro seen by an photographer."
     },
@@ -85,7 +85,7 @@ const onshorePhotos = [
         description: "Nouspoort Estate"
     },
 	{
-        file: "nala_siberian_cat.jpg",
+        file: "nala_siberian_cat.JPG",
         title: "Nala - Siberian Cat",
         description: "The Siberian is a centuries-old landrace of domestic cat in Russia."
     },
