@@ -3,31 +3,31 @@ const maritimePhotos = [
         file: "yacht1.JPG",
         title: "RAJA² YACHT CHARTER",
         description: "Luxury yacht charter photography showcasing the elegance, lifestyle, and premium onboard experience of RAJA² Yacht Charter.",
-		hidden: false
+		hidden: true
     },
 	{
         file: "yacht2.JPG",
         title: "RAJA² YACHT CHARTER",
         description: "Capturing life at sea aboard RAJA² Yacht Charter through refined imagery that highlights luxury, adventure, and exceptional service.",
-		hidden: false
+		hidden: true
     },
     {
         file: "yacht3.JPG",
         title: "RAJA² YACHT CHARTER",
         description: "A collection of professional imagery documenting the luxury, craftsmanship, and unforgettable experiences aboard RAJA² Yacht Charter.",
-		hidden: false
+		hidden: true
     },
     {
         file: "yacht4.JPG",
         title: "RAJA² YACHT CHARTER",
         description: "Premium maritime photography created for RAJA² Yacht Charter, emphasizing luxury, elegance, and the beauty of life on the water.",
-		hidden: false
+		hidden: true
     },
     {
         file: "yacht5.JPG",
         title: "RAJA² YACHT CHARTER",
         description: "A visual showcase of RAJA² Yacht Charter, capturing the sophistication of luxury yachting, breathtaking ocean scenery, and the exceptional experiences that define life on board.",
-		hidden: false
+		hidden: true
     },
 	{
         file: "surfers.jpg",

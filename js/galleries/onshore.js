@@ -40,7 +40,7 @@ const onshorePhotos = [
         description: "Art by the community."
     },
 	{
-        file: "GoldenHour.jpg",
+        file: "GoldenHour.JPG",
         title: "Golden Hour",
         description: "Natures beauty in action."
     },
