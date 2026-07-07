@@ -74,3 +74,42 @@ function switchGallery(name, button) {
         loadGallery(galleries[name].folder, galleries[name].photos);
     }
 }
+// ==========================================
+// MOBILE NAVIGATION (Hamburger & Panel)
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.querySelector(".hamburger");
+    const mobilePanel = document.querySelector(".mobile-nav-panel");
+    const mobileLinks = document.querySelectorAll(".mobile-links a");
+
+    if (hamburger && mobilePanel) {
+        // Toggle menu open/close
+        hamburger.addEventListener("click", () => {
+            const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
+            hamburger.setAttribute("aria-expanded", !isExpanded);
+            hamburger.classList.toggle("active");
+            mobilePanel.classList.toggle("open");
+            document.body.classList.toggle("no-scroll");
+        });
+
+        // Close panel when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.setAttribute("aria-expanded", "false");
+                hamburger.classList.remove("active");
+                mobilePanel.classList.remove("open");
+                document.body.classList.remove("no-scroll");
+            });
+        });
+
+        // Close panel when clicking the dark background outside the links
+        mobilePanel.addEventListener("click", (e) => {
+            if (e.target === mobilePanel) {
+                hamburger.setAttribute("aria-expanded", "false");
+                hamburger.classList.remove("active");
+                mobilePanel.classList.remove("open");
+                document.body.classList.remove("no-scroll");
+            }
+        });
+    }
+});
