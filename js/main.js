@@ -1,4 +1,4 @@
-// Global data configurations for site pages
+// Safe execution checks for local global definitions
 const galleries = {
     maritime: {
         folder: "maritime",
@@ -16,12 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobilePanel = document.querySelector(".mobile-nav-panel");
     const mobileLinks = document.querySelectorAll(".mobile-links a");
 
-    if (hamburger) {
+    if (hamburger && mobilePanel) {
         hamburger.addEventListener("click", () => {
             const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
             hamburger.setAttribute("aria-expanded", !isExpanded);
             hamburger.classList.toggle("active");
-            if (mobilePanel) mobilePanel.classList.toggle("open");
+            mobilePanel.classList.toggle("open");
             document.body.classList.toggle("no-scroll");
         });
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             link.addEventListener("click", () => {
                 hamburger.setAttribute("aria-expanded", "false");
                 hamburger.classList.remove("active");
-                if (mobilePanel) mobilePanel.classList.remove("open");
+                mobilePanel.classList.remove("open");
                 document.body.classList.remove("no-scroll");
             });
         });
