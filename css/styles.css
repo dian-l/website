@@ -864,7 +864,7 @@
                                 letter-spacing: 0.5px;
                         }
                 }
-                /* MOBILE NAVIGATION - HAMBURGER & PANEL */
+/* MOBILE NAVIGATION - HAMBURGER & PANEL */
 .hamburger {
         display: none;
         flex-direction: column;
@@ -939,13 +939,13 @@ body.no-scroll {
         overflow: hidden; /* Prevents background scrolling when menu is open */
 }
 
-/* Overriding previous mobile nav styles */
-@media (max-width: 640px) {
+/* Changed breakpoint to 768px for Tablet & Mobile Support */
+@media (max-width: 768px) {
         .desktop-nav {
-                display: none;
+                display: none !important;
         }
         .hamburger {
-                display: flex;
+                display: flex !important;
         }
         /* Ensure the logo name displays cleanly next to the hamburger */
         .nav-name span {
