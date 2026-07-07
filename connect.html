@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
+   <head>  
+      <script>
+   // If a user lands on this page via the raw root domain, force-redirect them to the homepage
+   if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+      // Do nothing, they are where they need to be
+   } else if (!window.location.href.includes("connect.html") && window.location.pathname.endsWith("/")) {
+      window.location.replace("/index.html");
+   }
+</script>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Connect | Dian Loucas</title>
