@@ -1,115 +1,90 @@
+// Global data
 const galleries = {
-    maritime: {
-        folder: "maritime",
-        photos: maritimePhotos // Declared in maritime.js
-    },
-    onshore: {
-        folder: "onshore",
-        photos: onshorePhotos // Declared in onshore.js
-    }
+    maritime: { folder: "maritime", photos: typeof maritimePhotos !== 'undefined' ? maritimePhotos : [] },
+    onshore: { folder: "onshore", photos: typeof onshorePhotos !== 'undefined' ? onshorePhotos : [] }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const gallery = document.getElementById("portfolioGallery");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-image") || (lightbox ? lightbox.querySelector("img") : null);
-    const closeBtn = document.querySelector(".lightbox-close") || document.querySelector(".close-lightbox");
+    // --- 1. MOBILE NAV ---
+    const hamburger = document.querySelector(".hamburger");
+    const mobilePanel = document.querySelector(".mobile-nav-panel");
+    const mobileLinks = document.querySelectorAll(".mobile-links a");
 
-    // ==========================================
-    // PORTFOLIO GALLERY GENERATION & OPENING
-    // ==========================================
-    if (gallery) {
-        // Initial gallery render
-        if (typeof loadGallery === "function") {
-            loadGallery(galleries.maritime.folder, galleries.maritime.photos);
-        }
-
-        // Open lightbox on gallery image click
-        gallery.addEventListener("click", (e) => {
-            const targetImg = e.target.closest(".photo-thumb img");
-            if (!targetImg || !lightbox || !lightboxImg) return;
-
-            lightbox.classList.add("show");
-            lightboxImg.src = targetImg.src;
-            lightboxImg.alt = targetImg.alt;
+    if (hamburger) {
+        hamburger.addEventListener("click", () => {
+            const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
+            hamburger.setAttribute("aria-expanded", !isExpanded);
+            hamburger.classList.toggle("active");
+            if (mobilePanel) mobilePanel.classList.toggle("open");
+            document.body.classList.toggle("no-scroll");
+        });
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.setAttribute("aria-expanded", "false");
+                hamburger.classList.remove("active");
+                if (mobilePanel) mobilePanel.classList.remove("open");
+                document.body.classList.remove("no-scroll");
+            });
         });
     }
 
-    // ==========================================
-    // UNIFIED LIGHTBOX CLOSING LOGIC (Global)
-    // ==========================================
+    // --- 2. PORTFOLIO ---
+    const gallery = document.getElementById("portfolioGallery");
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-image");
+    const closeBtn = document.querySelector(".lightbox-close") || document.querySelector(".close-lightbox");
+
+    if (gallery && typeof loadGallery === "function") {
+        loadGallery(galleries.maritime.folder, galleries.maritime.photos);
+        gallery.addEventListener("click", (e) => {
+            const targetImg = e.target.closest(".photo-thumb img");
+            if (targetImg && lightbox && lbImg) {
+                lightbox.classList.add("show");
+                lbImg.src = targetImg.src;
+            }
+        });
+    }
+
+    // --- 3. UNIVERSAL LIGHTBOX CLOSING ---
     if (lightbox) {
-        // Close via 'X' button
-        if (closeBtn) {
-            closeBtn.addEventListener("click", () => {
-                lightbox.classList.remove("show");
-            });
-        }
-
-        // Close via clicking background overlay
-        lightbox.addEventListener("click", (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove("show");
-            }
-        });
-
-        // Close via Escape key
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && lightbox.classList.contains("show")) {
-                lightbox.classList.remove("show");
-            }
-        });
+        const close = () => lightbox.classList.remove("show");
+        if (closeBtn) closeBtn.addEventListener("click", close);
+        lightbox.addEventListener("click", (e) => { if (e.target === lightbox) close(); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
     }
 });
 
-// Tab navigation switching
+// Helper for Portfolio Tabs
 function switchGallery(name, button) {
-    document.querySelectorAll(".ptab").forEach(btn => {
-        btn.classList.remove("active");
-    });
-
+    document.querySelectorAll(".ptab").forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
-
     if (typeof loadGallery === "function") {
         loadGallery(galleries[name].folder, galleries[name].photos);
     }
 }
 // ==========================================
-// MOBILE NAVIGATION (Hamburger & Panel)
+// CV TAB & LIGHTBOX (Global)
 // ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-    const hamburger = document.querySelector(".hamburger");
-    const mobilePanel = document.querySelector(".mobile-nav-panel");
-    const mobileLinks = document.querySelectorAll(".mobile-links a");
 
-    if (hamburger && mobilePanel) {
-        // Toggle menu open/close
-        hamburger.addEventListener("click", () => {
-            const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
-            hamburger.setAttribute("aria-expanded", !isExpanded);
-            hamburger.classList.toggle("active");
-            mobilePanel.classList.toggle("open");
-            document.body.classList.toggle("no-scroll");
-        });
+// Switch CV tabs
+function switchCV(type, el) {
+    const isAlreadyActive = el.classList.contains("active");
+    if (isAlreadyActive) return;
 
-        // Close panel when a link is clicked
-        mobileLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                hamburger.setAttribute("aria-expanded", "false");
-                hamburger.classList.remove("active");
-                mobilePanel.classList.remove("open");
-                document.body.classList.remove("no-scroll");
-            });
-        });
+    document.querySelectorAll(".cvtab").forEach((t) => t.classList.remove("active"));
+    document.querySelectorAll(".cv-panel").forEach((p) => p.classList.remove("active"));
 
-        // Close panel when clicking the dark background outside the links
-        mobilePanel.addEventListener("click", (e) => {
-            if (e.target === mobilePanel) {
-                hamburger.setAttribute("aria-expanded", "false");
-                hamburger.classList.remove("active");
-                mobilePanel.classList.remove("open");
-                document.body.classList.remove("no-scroll");
-            }
-        });
-    }
-});
+    el.classList.add("active");
+    const targetPanel = document.getElementById("cv-" + type);
+    if (targetPanel) targetPanel.classList.add("active");
+}
+
+// Global Lightbox Trigger
+function openLightbox(src) {
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-image");
+    if (!lb || !lbImg) return;
+    
+    lbImg.src = src;
+    lb.classList.add("show");
+}

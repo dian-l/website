@@ -144,52 +144,6 @@
          <img id="lightbox-image" src="" alt="" />
       </div>
 
-      <script>
-         function switchCV(type, el) {
-            const isAlreadyActive = el.classList.contains("active");
-            if (isAlreadyActive) return;
-
-            document
-               .querySelectorAll(".cvtab")
-               .forEach((t) => t.classList.remove("active"));
-            document
-               .querySelectorAll(".cv-panel")
-               .forEach((p) => p.classList.remove("active"));
-
-            el.classList.add("active");
-            document.getElementById("cv-" + type).classList.add("active");
-         }
-
-         // Corrected class assignment to map seamlessly to styles.css configurations
-         function openLightbox(src) {
-            const lb = document.getElementById("lightbox");
-            const lbImg = document.getElementById("lightbox-image");
-            if (!lb || !lbImg) return;
-            
-            lbImg.src = src;
-            lb.classList.add("show");
-         }
-
-         document.addEventListener("DOMContentLoaded", () => {
-            const lb = document.getElementById("lightbox");
-            const closeBtn = document.querySelector(".close-lightbox");
-
-            if (lb) {
-               lb.addEventListener("click", function (e) {
-                  if (e.target === lb) lb.classList.remove("show");
-               });
-
-               if (closeBtn) {
-                  closeBtn.addEventListener("click", function () {
-                     lb.classList.remove("show");
-                  });
-               }
-
-               document.addEventListener("keydown", function (e) {
-                  if (e.key === "Escape") lb.classList.remove("show");
-               });
-            }
-         });
-      </script>
+      <script src="js/main.js"></script>
    </body>
 </html>
