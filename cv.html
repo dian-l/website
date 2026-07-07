@@ -20,7 +20,7 @@
             D·L
             <span
                style="
-                  font-family: &quot;Inter&quot;, sans-serif;
+                  font-family: 'Inter', sans-serif;
                   font-size: 0.55rem;
                   letter-spacing: 3px;
                   color: var(--text-light);
@@ -37,76 +37,85 @@
          </ul>
       </nav>
 
-      <section id="cv" style="padding-top: 120px; min-height: 100vh">
-         <div style="max-width: 1100px; margin: 0 auto">
-            <div class="section-header">
-               <span class="section-eyebrow-light">Experience</span>
-               <h2 class="section-title-light">Curriculum Vitae</h2>
-            </div>
-            <div class="cv-tabs">
-               <button class="cvtab active" onclick="switchCV('land', this)">
-                  Onshore
-               </button>
-               <button
-                  class="cvtab maritime"
-                  onclick="switchCV('maritime', this)"
-               >
-                  Offshore
-               </button>
-            </div>
+      <section id="cv">
+         <div class="section-header">
+            <span class="section-eyebrow-light">Professional Profile</span>
+            <h2 class="section-title-light">Curriculum Vitae</h2>
+         </div>
 
-            <!-- LAND CV -->
-            <div id="cv-land" class="cv-panel active">
-               <div class="cv-gallery">
-                  <div class="main-cv">
-                     <img
-                        src="images/landbased.png"
-                        alt="Land Based CV"
-                        onclick="openLightbox(this.src)"
-                     />
-                     <div style="display: flex; justify-content: center">
-                        <a
-                           href="images/landbased.png"
-                           class="cv-download"
-                           download
-                           >Download PDF</a
-                        >
-                     </div>
-                  </div>
+         <div class="cv-tabs">
+            <button class="cvtab active" onclick="switchCV('maritime', this)">
+               Maritime
+            </button>
+            <button class="cvtab" onclick="switchCV('onshore', this)">
+               Onshore / Hospitality
+            </button>
+         </div>
+
+         <div class="cv-panel active" id="cv-maritime">
+            <div class="cv-gallery">
+               <div class="main-cv">
+                  <img
+                     src="images/cv/Maritime_CV-1.jpg"
+                     alt="Maritime CV"
+                     onclick="openLightbox(this.src)"
+                  />
+                  <a
+                     href="assets/Dian_Loucas_Maritime_CV.pdf"
+                     download
+                     class="cv-download"
+                  >
+                     Download CV (PDF)
+                  </a>
+               </div>
+               <div class="cert-grid">
+                  <img
+                     src="images/cv/certs/stcw.jpg"
+                     alt="STCW"
+                     onclick="openLightbox(this.src)"
+                  />
+                  <img
+                     src="images/cv/certs/eng1.jpg"
+                     alt="ENG1 Medical"
+                     onclick="openLightbox(this.src)"
+                  />
+                  <img
+                     src="images/cv/certs/pwc.jpg"
+                     alt="PWC License"
+                     onclick="openLightbox(this.src)"
+                  />
+                  <img
+                     src="images/cv/certs/pb2.jpg"
+                     alt="Powerboat Level 2"
+                     onclick="openLightbox(this.src)"
+                  />
+                  <img
+                     src="images/cv/certs/src.jpg"
+                     alt="SRC Radio License"
+                     onclick="openLightbox(this.src)"
+                  />
                </div>
             </div>
+         </div>
 
-            <!-- MARITIME CV -->
-            <div id="cv-maritime" class="cv-panel">
-               <div class="cv-gallery">
-                  <div class="main-cv">
-                     <img
-                        src="images/maritime-cv.png"
-                        alt="Maritime CV"
-                        onclick="openLightbox(this.src)"
-                     />
-                     <div style="display: flex; justify-content: center">
-                        <a
-                           href="images/maritime-cv.png"
-                           class="cv-download"
-                           download
-                           >Download PDF</a
-                        >
-                     </div>
-                  </div>
-                  <div class="cert-grid">
-                                                <img src="images/pdsd.png" onclick="openLightbox(this.src)" alt="PDSD">
-                                                <img src="images/pssr.png" onclick="openLightbox(this.src)" alt="PSSR">
-                                                <img src="images/efa.png" onclick="openLightbox(this.src)" alt="EFA">
-                                                <img src="images/mff.png" onclick="openLightbox(this.src)" alt="MFF">
-                                                <img src="images/pst.png" onclick="openLightbox(this.src)" alt="PST">
-                                                <img src="images/prvh.png" onclick="openLightbox(this.src)" alt="PRVH">
-                                                <img src="images/superdeck.png" onclick="openLightbox(this.src)" alt="Super Deck">
-                                                <img src="images/pwc-pb2.png" onclick="openLightbox(this.src)" alt="PWC PB2">
-                                                <img src="images/compcrew.png" onclick="openLightbox(this.src)" alt="Competent Crew">
-                  </div>
+         <div class="cv-panel" id="cv-onshore">
+            <div class="cv-gallery">
+               <div class="main-cv">
+                  <img
+                     src="images/cv/Onshore_CV-1.jpg"
+                     alt="Onshore CV"
+                     onclick="openLightbox(this.src)"
+                  />
+                  <a
+                     href="assets/Dian_Loucas_Hospitality_CV.pdf"
+                     download
+                     class="cv-download"
+                  >
+                     Download CV (PDF)
+                  </a>
                </div>
             </div>
+         </div>
       </section>
 
       <footer>
@@ -114,15 +123,16 @@
          <span class="footer-copy">© 2026 · All rights reserved</span>
       </footer>
 
-      <!-- LIGHTBOX -->
       <div class="lightbox" id="lightbox">
-         <span class="close-lightbox">&times;</span>
-         <img id="lightbox-img" />
+         <span class="close-lightbox lightbox-close">&times;</span>
+         <img id="lightbox-image" src="" alt="" />
       </div>
 
       <script>
          function switchCV(type, el) {
             const isAlreadyActive = el.classList.contains("active");
+            if (isAlreadyActive) return;
+
             document
                .querySelectorAll(".cvtab")
                .forEach((t) => t.classList.remove("active"));
@@ -130,33 +140,38 @@
                .querySelectorAll(".cv-panel")
                .forEach((p) => p.classList.remove("active"));
 
-            if (!isAlreadyActive) {
-               el.classList.add("active");
-               document.getElementById("cv-" + type).classList.add("active");
-            }
+            el.classList.add("active");
+            document.getElementById("cv-" + type).classList.add("active");
          }
 
+         // Corrected class assignment to map seamlessly to styles.css configurations
          function openLightbox(src) {
-            document.getElementById("lightbox-img").src = src;
-            document.getElementById("lightbox").classList.add("active");
+            const lb = document.getElementById("lightbox");
+            const lbImg = document.getElementById("lightbox-image");
+            if (!lb || !lbImg) return;
+            
+            lbImg.src = src;
+            lb.classList.add("show");
          }
 
-         const lightbox = document.getElementById("lightbox");
-         const closeBtn = document.querySelector(".close-lightbox");
+         document.addEventListener("DOMContentLoaded", () => {
+            const lb = document.getElementById("lightbox");
+            const closeBtn = document.querySelector(".close-lightbox");
 
-         lightbox.addEventListener("click", function (e) {
-            if (e.target === lightbox) {
-               lightbox.classList.remove("active");
-            }
-         });
+            if (lb) {
+               lb.addEventListener("click", function (e) {
+                  if (e.target === lb) lb.classList.remove("show");
+               });
 
-         closeBtn.addEventListener("click", function () {
-            lightbox.classList.remove("active");
-         });
+               if (closeBtn) {
+                  closeBtn.addEventListener("click", function () {
+                     lb.classList.remove("show");
+                  });
+               }
 
-         document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") {
-               lightbox.classList.remove("active");
+               document.addEventListener("keydown", function (e) {
+                  if (e.key === "Escape") lb.classList.remove("show");
+               });
             }
          });
       </script>
