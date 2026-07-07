@@ -2,13 +2,11 @@
 <html lang="en">
    <head>  
       <script>
-   // If a user lands on this page via the raw root domain, force-redirect them to the homepage
-   if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
-      // Do nothing, they are where they need to be
-   } else if (!window.location.href.includes("connect.html") && window.location.pathname.endsWith("/")) {
-      window.location.replace("/index.html");
-   }
-</script>
+         // If the server mistakenly serves this page at the root domain (/), instantly redirect to the homepage
+         if (window.location.pathname === "/" || window.location.pathname === "") {
+            window.location.replace("/index.html");
+         }
+      </script>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Connect | Dian Loucas</title>
@@ -28,7 +26,7 @@
             D·L
             <span
                style="
-                  font-family: &quot;Inter&quot;, sans-serif;
+                  font-family: 'Inter', sans-serif;
                   font-size: 0.55rem;
                   letter-spacing: 3px;
                   color: var(--text-light);
@@ -63,7 +61,7 @@
             >
             <h2
                style="
-                  font-family: &quot;Bebas Neue&quot;, sans-serif;
+                  font-family: 'Bebas Neue', sans-serif;
                   font-size: 3rem;
                   letter-spacing: 4px;
                   color: var(--white);
