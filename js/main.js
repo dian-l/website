@@ -1,11 +1,17 @@
-// Global data
+// Global data configurations for site pages
 const galleries = {
-    maritime: { folder: "maritime", photos: typeof maritimePhotos !== 'undefined' ? maritimePhotos : [] },
-    onshore: { folder: "onshore", photos: typeof onshorePhotos !== 'undefined' ? onshorePhotos : [] }
+    maritime: {
+        folder: "maritime",
+        photos: typeof maritimePhotos !== 'undefined' ? maritimePhotos : []
+    },
+    onshore: {
+        folder: "onshore",
+        photos: typeof onshorePhotos !== 'undefined' ? onshorePhotos : []
+    }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    // --- 1. MOBILE NAV ---
+    // --- 1. MOBILE INTERACTION MANAGEMENT ---
     const hamburger = document.querySelector(".hamburger");
     const mobilePanel = document.querySelector(".mobile-nav-panel");
     const mobileLinks = document.querySelectorAll(".mobile-links a");
@@ -18,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (mobilePanel) mobilePanel.classList.toggle("open");
             document.body.classList.toggle("no-scroll");
         });
+
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
                 hamburger.setAttribute("aria-expanded", "false");
@@ -28,33 +35,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. PORTFOLIO ---
+    // --- 2. PORTFOLIO PAGE INTENT CAPTURE ---
     const gallery = document.getElementById("portfolioGallery");
     const lightbox = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lightbox-image");
+    const lightboxImg = document.getElementById("lightbox-image");
     const closeBtn = document.querySelector(".lightbox-close") || document.querySelector(".close-lightbox");
 
-    if (gallery && typeof loadGallery === "function") {
-        loadGallery(galleries.maritime.folder, galleries.maritime.photos);
+    if (gallery) {
+        if (typeof loadGallery === "function") {
+            loadGallery(galleries.maritime.folder, galleries.maritime.photos);
+        }
+
         gallery.addEventListener("click", (e) => {
             const targetImg = e.target.closest(".photo-thumb img");
-            if (targetImg && lightbox && lbImg) {
-                lightbox.classList.add("show");
-                lbImg.src = targetImg.src;
-            }
+            if (!targetImg || !lightbox || !lightboxImg) return;
+
+            lightbox.classList.add("show");
+            lightboxImg.src = targetImg.src;
+            lightboxImg.alt = targetImg.alt;
         });
     }
 
-    // --- 3. UNIVERSAL LIGHTBOX CLOSING ---
+    // --- 3. GLOBAL LIGHTBOX ESCAPE HANDLERS ---
     if (lightbox) {
-        const close = () => lightbox.classList.remove("show");
-        if (closeBtn) closeBtn.addEventListener("click", close);
-        lightbox.addEventListener("click", (e) => { if (e.target === lightbox) close(); });
-        document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+        const closeLightboxView = () => {
+            lightbox.classList.remove("show");
+        };
+
+        if (closeBtn) closeBtn.addEventListener("click", closeLightboxView);
+        lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightboxView(); });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && lightbox.classList.contains("show")) closeLightboxView();
+        });
     }
 });
 
-// Helper for Portfolio Tabs
+// --- 4. EXPOSED CORE FUNCTIONS (PORTFOLIO TABS, CV VIEWS, LIGHTBOX INTERFACES) ---
 function switchGallery(name, button) {
     document.querySelectorAll(".ptab").forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
@@ -62,11 +78,7 @@ function switchGallery(name, button) {
         loadGallery(galleries[name].folder, galleries[name].photos);
     }
 }
-// ==========================================
-// CV TAB & LIGHTBOX (Global)
-// ==========================================
 
-// Switch CV tabs
 function switchCV(type, el) {
     const isAlreadyActive = el.classList.contains("active");
     if (isAlreadyActive) return;
@@ -79,7 +91,6 @@ function switchCV(type, el) {
     if (targetPanel) targetPanel.classList.add("active");
 }
 
-// Global Lightbox Trigger
 function openLightbox(src) {
     const lb = document.getElementById("lightbox");
     const lbImg = document.getElementById("lightbox-image");
