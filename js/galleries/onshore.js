@@ -55,11 +55,6 @@ const onshorePhotos = [
         description: "Canal Walk."
     },
 	{
-        file: "friends.jpg",
-        title: "Game Night",
-        description: "Yzerfontein, Western Cape."
-    },
-	{
         file: "colosseum.jpg",
         title: "Collosseum, Rome",
         description: "Rome, Italy"
