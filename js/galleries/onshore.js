@@ -104,6 +104,36 @@ const onshorePhotos = [
         title: "Silos",
         description: "Battery Park, V&A Waterfront"
     },
+    {
+        file: "tree1.PNG",
+        title: "Tree",
+        description: "Unique perspective of a tree in the Western Cape."
+    },
+    {
+        file: "aperol.PNG",
+        title: "Aperol Spritz",
+        description: "A marketing van outside Time Out Market."
+    },
+    {
+        file: "at.PNG",
+        title: "Crew Mates",
+        description: "My crew mates on a daywork."
+    },
+    {
+        file: "crewhouse1.JPG",
+        title: "Crew House",
+        description: "A unique perspective on the crew house."
+    },
+    {
+        file: "crewhouse2.JPG",
+        title: "Crew House",
+        description: "Another unique perspective on the crew house."
+    },
+    {
+        file: "dawn.JPG",
+        title: "Dawn",
+        description: "A serene sunrise at Cape Grace Marina."
+    },
 	
 
 ];

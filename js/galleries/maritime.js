@@ -89,4 +89,40 @@ const maritimePhotos = [
         description: "sail.",
 		hidden: false
     },
+    {
+        file: "thrifty.jpg",
+        title: "Thrifty",
+        description: "Daywork.",
+		hidden: false
+    },
+    {
+        file: "5151.JPG",
+        title: "Code 5151",
+        description: "Daywork.",
+		hidden: false
+    },
+    {
+        file: "boat1.PNG",
+        title: "Boat",
+        description: "A unique perspective on marinas.",
+		hidden: false
+    },
+    {
+        file: "boat2.PNG",
+        title: "Boat",
+        description: "A unique perspective on marinas.",
+		hidden: false
+    },
+    {
+        file: "boat3.JPG",
+        title: "Boat",
+        description: "Early morning reflection.",
+		hidden: false
+    },
+    {
+        file: "elyssium.PNG",
+        title: "Elyssium",
+        description: "Gorgeous yacht seen after a completed wash down.",
+		hidden: false
+    },
 ];
