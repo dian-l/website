@@ -542,89 +542,96 @@
                 }
 
                 /* Maritime CV Gallery */
-                .cv-gallery {
-                        display: flex;
-                        justify-content: center;
-                        align-items: flex-start;
-                        gap: 3rem;
-                        margin-top: 2rem;
-                        background: #FAFCFF;
-                        padding: 3rem;
-                        border: 1px solid var(--salt);
-                        border-radius: 4px;
-                        box-shadow: 0 20px 50px rgba(9, 32, 63, 0.05);
-                }
+.cv-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.35fr;
+    gap: 24px;
+    align-items: start;
+    margin-top: 2rem;
+    background: #FAFCFF;
+    padding: 3rem;
+    border: 1px solid var(--salt);
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(9, 32, 63, 0.05);
+}
 
-                .main-cv {
-                        width: 350px;
-                        flex-shrink: 0;
-                }
+/* Left + middle pages */
+.cv-pages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+}
 
-                .main-cv img {
-                        width: 100%;
-                        border-radius: 2px;
-                        cursor: pointer;
-                        transition: all 0.4s ease;
-                        box-shadow: 0 15px 35px rgba(9, 32, 63, 0.1);
-                        border: 1px solid var(--salt);
-                }
+.cv-pages img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 35px rgba(9, 32, 63, 0.1);
+    border: 1px solid var(--salt);
+}
 
-                .main-cv img:hover {
-                        transform: translateY(-5px);
-                        box-shadow: 0 25px 45px rgba(9, 32, 63, 0.15);
-                        border-color: var(--rope);
-                }
+.cv-pages img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 45px rgba(9, 32, 63, 0.15);
+    border-color: var(--rope);
+}
 
-                .cert-grid {
-                        display: grid;
-                        grid-template-columns: repeat(3, 100px);
-                        gap: 15px;
-                        align-content: start;
-                }
+/* Certifications on the right */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    align-content: start;
+}
 
-                .cert-grid img {
-                        width: 100%;
-                        aspect-ratio: 1/1.4;
-                        object-fit: cover;
-                        border-radius: 2px;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 8px 20px rgba(9, 32, 63, 0.08);
-                        border: 1px solid var(--salt);
-                }
+.cert-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1.4;
+    object-fit: cover;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(9, 32, 63, 0.08);
+    border: 1px solid var(--salt);
+}
 
-                .cert-grid img:nth-child(odd) { transform: rotate(-2deg); }
-                .cert-grid img:nth-child(even) { transform: rotate(2deg); }
+.cert-grid img:nth-child(odd) { transform: rotate(-2deg); }
+.cert-grid img:nth-child(even) { transform: rotate(2deg); }
 
-                .cert-grid img:hover {
-                        transform: scale(1.15) rotate(0deg);
-                        z-index: 10;
-                        box-shadow: 0 15px 30px rgba(9, 32, 63, 0.15);
-                        border-color: var(--rope);
-                }
+.cert-grid img:hover {
+    transform: scale(1.08) rotate(0deg);
+    z-index: 10;
+    box-shadow: 0 15px 30px rgba(9, 32, 63, 0.15);
+    border-color: var(--rope);
+}
 
-                .cv-download {
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 0.5rem;
-                        margin-top: 1.5rem;
-                        padding: 1rem 2rem;
-                        border-radius: 2px;
-                        background: var(--navy);
-                        color: var(--white);
-                        text-decoration: none;
-                        font-size: 0.75rem;
-                        letter-spacing: 2px;
-                        text-transform: uppercase;
-                        transition: all 0.3s ease;
-                        font-weight: 600;
-                }
+.cv-download {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 2px;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
 
-                .cv-download:hover {
-                        background: var(--rope);
-                        color: var(--black);
-                }
+.cv-download:hover {
+    background: var(--rope);
+    color: var(--black);
+}
 
                 /* SOCIALS SECTION */
                 #socials {
@@ -952,27 +959,30 @@ body.no-scroll {
                 display: inline-flex !important; 
         }
 }
-.main-cv {
-   display: flex;
-   flex-direction: column;
-   gap: 16px;
+@media (max-width: 1000px) {
+    .cv-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .cv-pages {
+        grid-template-columns: 1fr;
+    }
 }
 
-.cv-pages {
-   display: flex;
-   gap: 16px;
-   align-items: flex-start;
-   flex-wrap: wrap;
-}
+@media (max-width: 640px) {
+    .cv-gallery {
+        padding: 1.5rem;
+        width: 100%;
+    }
 
-.cv-pages img {
-   width: calc(50% - 8px);
-   height: auto;
-   display: block;
-   cursor: pointer;
-}
-@media (max-width: 768px) {
-   .cv-pages img {
-      width: 100%;
-   }
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #cv,
+    #portfolio,
+    #socials {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
 }
