@@ -556,24 +556,33 @@
                 }
 
                 .main-cv {
-                        width: 350px;
-                        flex-shrink: 0;
-                }
+    width: 760px;
+    max-width: 100%;
+    flex-shrink: 0;
+}
 
-                .main-cv img {
-                        width: 100%;
-                        border-radius: 2px;
-                        cursor: pointer;
-                        transition: all 0.4s ease;
-                        box-shadow: 0 15px 35px rgba(9, 32, 63, 0.1);
-                        border: 1px solid var(--salt);
-                }
+.cv-pages {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 
-                .main-cv img:hover {
-                        transform: translateY(-5px);
-                        box-shadow: 0 25px 45px rgba(9, 32, 63, 0.15);
-                        border-color: var(--rope);
-                }
+.cv-pages img {
+    width: calc(50% - 10px);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 35px rgba(9, 32, 63, 0.1);
+    border: 1px solid var(--salt);
+}
+
+.cv-pages img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 45px rgba(9, 32, 63, 0.15);
+    border-color: var(--rope);
+}
 
                 .cert-grid {
                         display: grid;
@@ -842,9 +851,17 @@
                         }
 
                         .main-cv {
-                                width: 100%;
-                                max-width: 350px;
-                        }
+    width: 100%;
+    max-width: 900px;
+}
+
+.cv-pages {
+    flex-direction: column;
+}
+
+.cv-pages img {
+    width: 100%;
+}
 
                         #cv,
                         #portfolio,
