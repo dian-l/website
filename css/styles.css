@@ -584,6 +584,11 @@
     border-color: var(--rope);
 }
 
+.cv-pages img:only-child {
+    width: 100%;
+    max-width: 420px;
+}
+
                 .cert-grid {
                         display: grid;
                         grid-template-columns: repeat(3, 100px);
@@ -854,10 +859,7 @@
     width: 100%;
     max-width: 900px;
 }
-.cv-pages img:only-child {
-    width: 100%;
-    max-width: 420px;
-}
+
 .cv-pages {
     flex-direction: column;
 }
