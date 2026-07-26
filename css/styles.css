@@ -952,3 +952,27 @@ body.no-scroll {
                 display: inline-flex !important; 
         }
 }
+.main-cv {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+.cv-pages {
+   display: flex;
+   gap: 16px;
+   align-items: flex-start;
+   flex-wrap: wrap;
+}
+
+.cv-pages img {
+   width: calc(50% - 8px);
+   height: auto;
+   display: block;
+   cursor: pointer;
+}
+@media (max-width: 768px) {
+   .cv-pages img {
+      width: 100%;
+   }
+}
